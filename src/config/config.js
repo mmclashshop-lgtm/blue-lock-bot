@@ -1,0 +1,172 @@
+require('dotenv').config();
+
+module.exports = {
+  token: process.env.DISCORD_TOKEN,
+  mongodbUri: process.env.MONGODB_URI || 'mongodb://localhost:27017/blue-lock-bot',
+  clientId: process.env.CLIENT_ID,
+  guildId: process.env.GUILD_ID,
+  prefix: process.env.PREFIX || '/',
+  colors: {
+    primary: '#0099CC',
+    secondary: '#023047',
+    accent: '#FFC300',
+    success: '#2ECC71',
+    danger: '#E74C3C',
+    warning: '#F39C12',
+    info: '#3498DB',
+    dark: '#0A0A23',
+    blueLock: '#0099CC',
+    ego: '#E91E63',
+    rank: {
+      bronze: '#CD7F32',
+      silver: '#C0C0C0',
+      gold: '#FFD700',
+      platinum: '#E5E4E2',
+      diamond: '#B9F2FF',
+      master: '#FF00FF',
+      champion: '#FF4500',
+      elite: '#00FFFF',
+      king: '#FFD700'
+    }
+  },
+  emojis: {
+    soccer: '⚽',
+    fire: '🔥',
+    star: '⭐',
+    crown: '👑',
+    trophy: '🏆',
+    sword: '⚔️',
+    shield: '🛡️',
+    lightning: '⚡',
+    eye: '👁️',
+    heart: '💙',
+    coin: '🪙',
+    gem: '💎',
+    box: '📦',
+    key: '🔑',
+    lock: '🔒',
+    chart: '📊',
+    target: '🎯',
+    medal: '🎖️',
+    ribbon: '🎗️',
+    arrow: '➡️',
+    back: '◀️',
+    next: '▶️',
+    check: '✅',
+    cross: '❌',
+    warning: '⚠️',
+    info: 'ℹ️',
+    level: '📈',
+    xp: '✨',
+    rank: '🏅',
+    player: '👤',
+    team: '👥',
+    clan: '🏰',
+    shop: '🛒',
+    training: '🏋️',
+    mission: '🎯',
+    battle: '⚔️',
+    speed: '💨',
+    defense: '🛡️',
+    shooting: '🎯',
+    passing: '🔄',
+    dribbling: '🪄',
+    vision: '👁️',
+    stamina: '💪',
+    finish: '🎯',
+    control: '🎮',
+    reaction: '⚡',
+    ego: '🔥'
+  },
+  ranks: [
+    { name: 'Bronze', minXP: 0, color: '#CD7F32' },
+    { name: 'Silver', minXP: 1000, color: '#C0C0C0' },
+    { name: 'Gold', minXP: 3000, color: '#FFD700' },
+    { name: 'Platinum', minXP: 6000, color: '#E5E4E2' },
+    { name: 'Diamond', minXP: 10000, color: '#B9F2FF' },
+    { name: 'Master', minXP: 15000, color: '#FF00FF' },
+    { name: 'Champion', minXP: 25000, color: '#FF4500' },
+    { name: 'Blue Lock Elite', minXP: 40000, color: '#00FFFF' },
+    { name: 'Egoist King', minXP: 60000, color: '#FFD700' }
+  ],
+  rarities: [
+    { name: 'Common', color: '#808080', multiplier: 1 },
+    { name: 'Rare', color: '#0070DD', multiplier: 1.5 },
+    { name: 'Epic', color: '#A335EE', multiplier: 2 },
+    { name: 'Legendary', color: '#FF8000', multiplier: 3 },
+    { name: 'Mythic', color: '#FF0000', multiplier: 5 },
+    { name: 'Divine', color: '#00FFFF', multiplier: 10 }
+  ],
+  positions: [
+    { name: 'Striker (ST)', key: 'ST', description: 'هداف الفريق' },
+    { name: 'Left Wing (LW)', key: 'LW', description: 'جناح أيسر' },
+    { name: 'Right Wing (RW)', key: 'RW', description: 'جناح أيمن' },
+    { name: 'Center Mid (CM)', key: 'CM', description: 'وسط ملعب' },
+    { name: 'Defensive Mid (CDM)', key: 'CDM', description: 'وسط دفاعي' },
+    { name: 'Left Back (LB)', key: 'LB', description: 'ظهير أيسر' },
+    { name: 'Right Back (RB)', key: 'RB', description: 'ظهير أيمن' },
+    { name: 'Center Back (CB)', key: 'CB', description: 'قلب دفاع' },
+    { name: 'Goalkeeper (GK)', key: 'GK', description: 'حارس مرمى' }
+  ],
+  playStyles: [
+    { name: 'Proactive', key: 'proactive', description: 'هجومي', color: '#FF3366' },
+    { name: 'Reactive', key: 'reactive', description: 'دفاعي', color: '#0077B6' },
+    { name: 'Creative', key: 'creative', description: 'مبدع', color: '#FFD700' },
+    { name: 'Analytical', key: 'analytical', description: 'تحليلي', color: '#00FF88' },
+    { name: 'Aggressive', key: 'aggressive', description: 'عدواني', color: '#FF4444' },
+    { name: 'Strategic', key: 'strategic', description: 'استراتيجي', color: '#A335EE' }
+  ],
+  characters: [
+    { name: 'Isagi Yoichi', key: 'isagi', skill: 'Meta Vision', stat: 'vision', statBonus: 10 },
+    { name: 'Rin Itoshi', key: 'rin', skill: 'Destroyer', stat: 'shooting', statBonus: 10 },
+    { name: 'Nagi Seishiro', key: 'nagi', skill: 'Super Trap', stat: 'control', statBonus: 10 },
+    { name: 'Bachira Meguru', key: 'bachira', skill: 'Monster Dribble', stat: 'dribbling', statBonus: 10 },
+    { name: 'Barou Shoei', key: 'barou', skill: 'King Impact', stat: 'finishing', statBonus: 10 },
+    { name: 'Shidou Ryusei', key: 'shidou', skill: 'Dragon Drive', stat: 'shooting', statBonus: 8 },
+    { name: 'Kaiser Michael', key: 'kaiser', skill: 'Kaiser Impact', stat: 'finishing', statBonus: 12 },
+    { name: 'Sae Itoshi', key: 'sae', skill: 'Perfect Pass', stat: 'passing', statBonus: 10 },
+    { name: 'Chigiri Hyoma', key: 'chigiri', skill: 'Red Rush', stat: 'speed', statBonus: 10 },
+    { name: 'Reo Mikage', key: 'reo', skill: 'Copy', stat: 'passing', statBonus: 8 }
+  ],
+  specialSkills: [
+    { name: 'Meta Vision', key: 'meta_vision', stat: 'vision', multiplier: 2.0, cooldown: 3 },
+    { name: 'Direct Shot', key: 'direct_shot', stat: 'shooting', multiplier: 1.8, cooldown: 2 },
+    { name: 'Monster Dribble', key: 'monster_dribble', stat: 'dribbling', multiplier: 2.2, cooldown: 3 },
+    { name: 'King Impact', key: 'king_impact', stat: 'finishing', multiplier: 2.5, cooldown: 4 },
+    { name: 'Predator Eye', key: 'predator_eye', stat: 'vision', multiplier: 2.3, cooldown: 3 },
+    { name: 'Super Trap', key: 'super_trap', stat: 'control', multiplier: 1.9, cooldown: 2 },
+    { name: 'Red Rush', key: 'red_rush', stat: 'speed', multiplier: 2.4, cooldown: 3 },
+    { name: 'Kaiser Impact', key: 'kaiser_impact', stat: 'finishing', multiplier: 3.0, cooldown: 5 },
+    { name: 'Perfect Pass', key: 'perfect_pass', stat: 'passing', multiplier: 2.1, cooldown: 2 },
+    { name: 'Destroyer', key: 'destroyer', stat: 'defense', multiplier: 2.0, cooldown: 3 }
+  ],
+  stats: {
+    baseMin: 40,
+    baseMax: 70,
+    maxStat: 99
+  },
+  levelSystem: {
+    baseXP: 100,
+    multiplier: 1.5,
+    maxLevel: 100
+  },
+  match: {
+    winXP: 50,
+    lossXP: 20,
+    drawXP: 35,
+    winCoins: 100,
+    lossCoins: 40,
+    drawCoins: 70
+  },
+  training: {
+    sessionsPerDay: 5,
+    xpPerSession: 15,
+    statGainMin: 1,
+    statGainMax: 3
+  },
+  seasonPass: {
+    freeLevels: 50,
+    premiumLevels: 50,
+    xpPerLevel: 500
+  }
+};
